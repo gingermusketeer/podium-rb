@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in podium-client.gemspec
+# Specify your gem's dependencies in podium.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require_relative "lib/podium/client/version"
+require_relative "lib/podium/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "podium-client"
-  spec.version       = Podium::Client::VERSION
+  spec.name          = "podium"
+  spec.version       = Podium::VERSION
   spec.authors       = ["Max Brosnahan"]
   spec.email         = ["maximilianbrosnahan@gmail.com"]
 
-  spec.summary       = "Client for podium based podlets"
-  spec.homepage      = "https://github.com/gingermusketeer/podium-client"
+  spec.summary       = "Lib for podium based podlets"
+  spec.homepage      = "https://github.com/gingermusketeer/podium"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/gingermusketeer/podium-client.git"
-  spec.metadata["changelog_uri"] = "https://github.com/gingermusketeer/podium-client/tree/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/gingermusketeer/podium.git"
+  spec.metadata["changelog_uri"] = "https://github.com/gingermusketeer/podium/tree/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
