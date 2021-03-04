@@ -5,5 +5,6 @@ require_relative "podium/manifest"
 
 module Podium
   class Error < StandardError; end
+
   # Your code goes here...
 end

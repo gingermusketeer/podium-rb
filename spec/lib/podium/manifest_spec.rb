@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe Podium::Manifest do
   let(:manifest_data) { JSON.parse(File.read("spec/fixtures/header_manifest.json")) }
@@ -11,6 +11,6 @@ RSpec.describe Podium::Manifest do
     expect(subject.fallback).to eql("/fallback")
     expect(subject.js).to eql([])
     expect(subject.css).to eql([])
-    expect(subject.proxy).to eql({"api" => "/api"})
+    expect(subject.proxy).to eql({ "api" => "/api" })
   end
 end
