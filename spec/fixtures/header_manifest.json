@@ -1,0 +1,15 @@
+{
+  "name": "header",
+  "version": "ed246eebf6e6036865e53d92fcfd7f82205c9655",
+  "content": "/",
+  "fallback": "/fallback",
+  "assets": {
+    "js": "",
+    "css": ""
+  },
+  "css": [],
+  "js": [],
+  "proxy": {
+    "api": "/api"
+  }
+}
