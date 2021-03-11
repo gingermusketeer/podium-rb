@@ -9,6 +9,13 @@ module Podium
       end
     end
 
+    HTTP_OPTS = {
+      open_timeout: 5,
+      read_timeout: 5,
+      write_timeout: 5,
+      ssl_timeout: 5
+    }
+
     attr_reader :uri
 
     def initialize(uri)
@@ -20,7 +27,7 @@ module Podium
     end
 
     def fetch
-      response = Net::HTTP.get_response(content_uri)
+      response = make_request(content_uri)
       check_podlet_version!(response["podlet-version"])
       response.body
     end
@@ -34,7 +41,13 @@ module Podium
     end
 
     def fetch_manifest
-      Manifest.new(JSON.parse(Net::HTTP.get(manifest_uri)))
+      Manifest.new(JSON.parse(make_request(manifest_uri).body))
+    end
+
+    def make_request(uri)
+      Net::HTTP.start(uri.host, uri.port, HTTP_OPTS) do |http|
+        http.request_get(uri.path)
+      end
     end
 
     def manifest_uri
