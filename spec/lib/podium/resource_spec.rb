@@ -8,9 +8,12 @@ RSpec.describe Podium::Resource do
   subject { described_class.new(uri) }
 
   describe "#fetch" do
-    it "returns the content for the podlet" do
+    before do
       stub_request(:get, "http://pizza.localhost/manifest.json")
         .to_return(body: manifest_str)
+    end
+
+    it "returns the content for the podlet" do
       stub_request(:get, "http://pizza.localhost/")
         .to_return(body: "tomato and cheese", headers: { "podlet-version" => manifest_version })
 
@@ -18,12 +21,18 @@ RSpec.describe Podium::Resource do
     end
 
     it "raises an error if the podlet-version does not match the manifest version" do
-      stub_request(:get, "http://pizza.localhost/manifest.json")
-        .to_return(body: manifest_str)
       stub_request(:get, "http://pizza.localhost/")
         .to_return(body: "tomato and cheese", headers: { "podlet-version" => "not manifest version" })
 
       expect { subject.fetch }.to raise_error(Podium::Resource::VersionMismatchError)
+    end
+
+    it "includes the context header params" do
+      stub_request(:get, "http://pizza.localhost/")
+        .with(headers: { "podium-fish-type" => "salmon" })
+        .to_return(body: "tomato and cheese", headers: { "podlet-version" => manifest_version })
+
+      expect(subject.fetch(fish_type: "salmon")).to eql("tomato and cheese")
     end
   end
 end
