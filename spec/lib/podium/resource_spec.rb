@@ -34,5 +34,14 @@ RSpec.describe Podium::Resource do
 
       expect(subject.fetch(fish_type: "salmon")).to eql("tomato and cheese")
     end
+
+    it "ensures that the response encoding is UTF-8" do
+      stub_request(:get, "http://pizza.localhost/")
+        .to_return(body: "tomato and cheese".force_encoding("ASCII"), headers: { "podlet-version" => manifest_version })
+
+        content = subject.fetch(fish_type: "salmon")
+        expect(content).to eql("tomato and cheese")
+        expect(content.encoding.to_s).to eql("UTF-8")
+    end
   end
 end

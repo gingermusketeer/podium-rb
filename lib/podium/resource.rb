@@ -29,7 +29,7 @@ module Podium
     def fetch(context = {})
       response = make_request(content_uri, context)
       check_podlet_version!(response["podlet-version"])
-      response.body
+      response.body.force_encoding("UTF-8")
     end
 
     private
