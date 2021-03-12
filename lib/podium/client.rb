@@ -1,7 +1,37 @@
 module Podium
   class Client
-    def register(uri)
-      Resource.new(uri)
+    def initialize(name_to_url: nil)
+      @name_to_url = name_to_url
+      @podlets = {}
+      @resources = {}
+    end
+
+    def register(name, uri = nil)
+      uri ||= determine_uri(name)
+      podlets[name] = uri
+    end
+
+    def load_content_for_podlets(podlet_names, context)
+      podlet_resources(podlet_names).map {|resource| resource.fetch(context) }
+    end
+
+    private
+
+    attr_reader :name_to_url, :podlets, :resources
+
+    def determine_uri(name)
+      raise "name_to_url not specified, podlet must be registered with uri" unless name_to_url
+      str = name_to_url.call(name)
+      raise "name_to_url returned nil, must return a string" unless str
+      URI(str)
+    end
+
+    def podlet_uri(name)
+      podlets.fetch(name)
+    end
+
+    def podlet_resources(names)
+      names.map {|name| resources[name] ||= Resource.new(podlet_uri(name))}
     end
   end
 end
