@@ -2,10 +2,11 @@ require "spec_helper"
 
 RSpec.describe Podium::Client do
   describe "#register" do
-    it "returns a resource for the URI" do
-      resource = subject.register("http://pizza.local/test-podlet")
+    it "adds the podlet to the registry" do
+      subject.register("test_podlet", "http://pizza.local/test-podlet")
 
-      expect(resource.uri).to eql("http://pizza.local/test-podlet")
+      url = subject.podlet_mapping.fetch("test_podlet")
+      expect(url).to eql("http://pizza.local/test-podlet")
     end
   end
 end
