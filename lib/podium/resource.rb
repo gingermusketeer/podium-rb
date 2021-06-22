@@ -16,10 +16,11 @@ module Podium
       ssl_timeout: 5,
     }
 
-    attr_reader :uri
+    attr_reader :uri, :name
 
-    def initialize(uri)
+    def initialize(uri, name)
       @uri = uri
+      @name = name
     end
 
     def manifest

@@ -14,7 +14,10 @@ module Podium
     end
 
     def load_content_for_podlets(podlet_names, context)
-      podlet_resources(podlet_names).map {|resource| resource.fetch(context) }
+      podlet_resources(podlet_names).reduce({}) do |acc, resource|
+        acc[resource.name] = resource.fetch(context)
+        acc
+      end
     end
 
     private
@@ -33,7 +36,7 @@ module Podium
     end
 
     def podlet_resources(names)
-      names.map {|name| resources[name] ||= Resource.new(podlet_uri(name))}
+      names.map { |name| resources[name] ||= Resource.new(podlet_uri(name), name) }
     end
   end
 end
