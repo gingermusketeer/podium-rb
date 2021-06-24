@@ -46,7 +46,7 @@ module Podium
     end
 
     def make_request(uri, context)
-      Net::HTTP.start(uri.host, uri.port, HTTP_OPTS) do |http|
+      response = Net::HTTP.start(uri.host, uri.port, HTTP_OPTS) do |http|
         request = Net::HTTP::Get.new uri
         context.compact.each do |k, v|
           header = "podium-#{k.to_s.gsub("_", "-")}"
@@ -55,6 +55,8 @@ module Podium
 
         http.request(request)
       end
+      raise StandardError, "Non 200 response from podlet" if response.code != "200"
+      response
     end
 
     def manifest_uri
