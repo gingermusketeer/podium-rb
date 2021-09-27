@@ -5,7 +5,7 @@ RSpec.describe Podium::Resource do
   let(:manifest_str) { File.read("spec/fixtures/header_manifest.json") }
   let(:manifest_version) { JSON.parse(manifest_str).fetch("version") }
 
-  subject { described_class.new(uri) }
+  subject { described_class.new(uri, :example) }
 
   describe "#fetch" do
     before do
@@ -39,9 +39,9 @@ RSpec.describe Podium::Resource do
       stub_request(:get, "http://pizza.localhost/")
         .to_return(body: "tomato and cheese".force_encoding("ASCII"), headers: { "podlet-version" => manifest_version })
 
-        content = subject.fetch(fish_type: "salmon")
-        expect(content).to eql("tomato and cheese")
-        expect(content.encoding.to_s).to eql("UTF-8")
+      content = subject.fetch(fish_type: "salmon")
+      expect(content).to eql("tomato and cheese")
+      expect(content.encoding.to_s).to eql("UTF-8")
     end
   end
 end
