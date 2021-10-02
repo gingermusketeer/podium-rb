@@ -20,6 +20,10 @@ module Podium
       end
     end
 
+    def podlet_resources(names)
+      names.map { |name| resources[name] ||= Resource.new(podlet_uri(name), name) }
+    end
+
     private
 
     attr_reader :name_to_url, :resources
@@ -33,10 +37,6 @@ module Podium
 
     def podlet_uri(name)
       podlet_mapping.fetch(name)
-    end
-
-    def podlet_resources(names)
-      names.map { |name| resources[name] ||= Resource.new(podlet_uri(name), name) }
     end
   end
 end

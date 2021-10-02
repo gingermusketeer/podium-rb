@@ -19,8 +19,9 @@ module Podium
 
     def add_podlets_to_layout
       return if File.read(LAYOUT_PATH).include?("podlet_content!")
-      inject_into_file LAYOUT_PATH, "<%= podlet_content!(:header) %>\n", before: "<%= yield %>"
-      inject_into_file LAYOUT_PATH, "<%= podlet_content!(:footer) %>\n", after: "<%= yield %>\n"
+      inject_into_file LAYOUT_PATH, "<%= podlet_content!(:header) %>\n    ", before: "<%= yield %>"
+      inject_into_file LAYOUT_PATH, "    <%= podlet_content!(:footer) %>\n", after: "<%= yield %>\n"
+      inject_into_file LAYOUT_PATH, "  <%= podlet_js_tags %>\n  ", before: "</head>\n"
     end
 
     private
