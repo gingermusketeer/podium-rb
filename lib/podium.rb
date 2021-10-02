@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "podium/version"
-require_relative "podium/client"
-require_relative "podium/resource"
-require_relative "podium/manifest"
-require_relative "podium/configuration"
-require_relative "podium/controller_helpers"
-require_relative "podium/podlet_preview"
-require_relative "podium/podlet_helpers"
-require_relative "podium/core_ext"
+require "podium/version"
+require "podium/client"
+require "podium/resource"
+require "podium/manifest"
+require "podium/configuration"
+require "podium/controller_helpers"
+require "podium/podlet_preview"
+require "podium/podlet_helpers"
+require "podium/core_ext"
 
 module Podium
   class NotConfiguredError < StandardError; end
