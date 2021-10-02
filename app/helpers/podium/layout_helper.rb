@@ -1,5 +1,5 @@
 module Podium
-  module LayoutHelpers
+  module LayoutHelper
     def podlet_content!(name)
       @podlet_content.fetch(name).html_safe
     end
