@@ -1,0 +1,10 @@
+class <%= controller_name %> < ActionController::Base
+  include Podium::PodletHelpers
+
+  def content
+  end
+
+  def fallback
+    render html: ""
+  end
+end

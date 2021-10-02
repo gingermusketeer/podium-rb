@@ -1,0 +1,3 @@
+class PodletPreviewController < Podium::PodletPreviewController
+
+end
