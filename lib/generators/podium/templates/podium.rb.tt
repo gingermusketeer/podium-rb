@@ -2,7 +2,5 @@ Podium.configure do |config|
   config.register(:header)
   config.register(:footer)
   # config.register(:widget_a, "http://widget.com/widget_a")
-  config.name_to_url = -> (name) {
-    "http://#{name}.my-podlet-host"
-  }
+  config.name_to_url = -> (name) { "http://#{name}.my-podlet-host" }
 end
