@@ -9,6 +9,7 @@ require "podium/controller_helpers"
 require "podium/podlet_preview"
 require "podium/podlet_helpers"
 require "podium/core_ext"
+require "podium/engine"
 
 module Podium
   class NotConfiguredError < StandardError; end
