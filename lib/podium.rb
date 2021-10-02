@@ -6,6 +6,10 @@ require_relative "podium/resource"
 require_relative "podium/manifest"
 require_relative "podium/configuration"
 require_relative "podium/controller_helpers"
+require_relative "podium/podlet_preview"
+require_relative "podium/podlet_preview_controller"
+require_relative "podium/podlet_helpers"
+require_relative "podium/core_ext"
 
 module Podium
   class NotConfiguredError < StandardError; end
