@@ -1,12 +1,15 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Specify your gem's dependencies in podium.gemspec
+# Specify your gem's dependencies in podium.gemspec.
 gemspec
 
-gem "rake", "~> 13.0"
+group :development do
+  gem "sqlite3"
+end
 
-gem "rspec", "~> 3.0"
+# Start debugger with binding.b -- Read more: https://github.com/ruby/debug
+gem "debug", ">= 1.0.0", group: %i[ development test ]
 
-gem "webmock", "~> 3.12"
+gem "rake"
+gem "webmock"
